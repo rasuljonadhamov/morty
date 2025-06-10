@@ -113,7 +113,7 @@ export function CharacterTable({ characters }: CharacterTableProps) {
   });
 
   return (
-    <div className="w-full sm:px-6 lg:px-8">
+    <div className="w-full ">
       <div className="rounded-md border overflow-hidden">
         <div className="w-full overflow-hidden">
           <Table className="w-full table-fixed ">
@@ -123,7 +123,16 @@ export function CharacterTable({ characters }: CharacterTableProps) {
                   {headerGroup.headers.map((header) => (
                     <TableHead
                       key={header.id}
-                      className="text-xs sm:text-sm px-2 py-1"
+                      className={`
+                        text-xs sm:text-sm px-2 py-1
+                        ${header.id === "image" ? "w-12" : ""}
+                        ${header.id === "name" ? "min-w-[150px]" : ""}
+                        ${header.id === "status" ? "hidden sm:table-cell w-24 text-center" : ""}
+                        ${header.id === "species" ? "hidden md:table-cell w-28" : ""}
+                        ${header.id === "gender" ? "hidden lg:table-cell w-20" : ""}
+                        ${header.id === "created" ? "hidden xl:table-cell w-32" : ""}
+                        ${header.id === "actions" ? "w-24 text-right" : ""}
+                      `}
                     >
                       {header.isPlaceholder
                         ? null
@@ -147,7 +156,16 @@ export function CharacterTable({ characters }: CharacterTableProps) {
                     {row.getVisibleCells().map((cell) => (
                       <TableCell
                         key={cell.id}
-                        className="text-xs sm:text-sm px-2 py-1 break-words"
+                        className={`
+                          text-xs sm:text-sm px-2 py-1 break-words
+                          ${cell.column.id === "image" ? "w-12" : ""}
+                          ${cell.column.id === "name" ? "min-w-[150px]" : ""}
+                          ${cell.column.id === "status" ? "hidden sm:table-cell w-24 text-center" : ""}
+                          ${cell.column.id === "species" ? "hidden md:table-cell w-28" : ""}
+                          ${cell.column.id === "gender" ? "hidden lg:table-cell w-20" : ""}
+                          ${cell.column.id === "created" ? "hidden xl:table-cell w-32" : ""}
+                          ${cell.column.id === "actions" ? "w-24" : ""}
+                        `}
                       >
                         {flexRender(
                           cell.column.columnDef.cell,
